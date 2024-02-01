@@ -1,10 +1,11 @@
-import {ButtonMui} from "../components/ButtonMui.tsx";
+import {ButtonMui} from "@/components/ButtonMui.tsx";
 
 
 export const Home = () => {
-//color={'secondary'}
+
     return (
         <main >
+            <div>My home page</div>
             <ButtonMui color={'secondary'}  />
         </main>
     )
