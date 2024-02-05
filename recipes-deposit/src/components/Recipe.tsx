@@ -1,8 +1,5 @@
-
-
-
-export const Recipe = () => {
-return <div>
+export const Recipe = (): JSX.Element => {
+  return (<div>
     Recipe page
-</div>
+</div>)
 }

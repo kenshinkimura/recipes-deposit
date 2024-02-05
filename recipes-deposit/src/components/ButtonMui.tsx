@@ -1,10 +1,9 @@
-import {Button, ButtonProps} from "@mui/material";
+import { Button, type ButtonProps } from '@mui/material'
 
-
-export const ButtonMui = ({color}: ButtonProps) => {
-    return (
+export const ButtonMui = ({ color }: ButtonProps): JSX.Element => {
+  return (
         <div>
             <Button color={color}>Add recipe</Button>
         </div>
-    )
+  )
 }
