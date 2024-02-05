@@ -5,11 +5,12 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
+import Stack from '@mui/material/Stack/Stack'
 
 export const Header = (): JSX.Element => {
   return (
 
-          <AppBar >
+          <AppBar position='absolute'>
               <Toolbar>
                   <IconButton
                       size="large"
@@ -21,9 +22,13 @@ export const Header = (): JSX.Element => {
                       <MenuIcon />
                   </IconButton>
                   <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                      News
+                      RECIPIES DEPOSIT
                   </Typography>
-                  <Button color="inherit">Login</Button>
+                  <Stack direction='row' spacing={2}>
+                      <Button color="inherit">Home</Button>
+                      <Button color="inherit">Recipe</Button>
+                      <Button color="inherit">Login</Button>
+                  </Stack>
               </Toolbar>
           </AppBar>
 

@@ -1,6 +1,6 @@
 import { Button, type ButtonProps } from '@mui/material'
 
-export const ButtonMui = ({ color }: ButtonProps): JSX.Element => {
+export const ButtonMui: React.FC = ({ color }: ButtonProps) => {
   return (
         <div>
             <Button color={color}>Add recipe</Button>
