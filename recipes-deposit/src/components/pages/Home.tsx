@@ -1,12 +1,13 @@
-import { ButtonMui } from '@/components/ButtonMui.tsx'
-import { Link } from 'react-router-dom'
 
-export const Home = (): JSX.Element => {
-  return (
+import { Link } from 'react-router-dom';
+
+export const Home: React.FC = () => {
+    return (
         <main>
             <div>My home page</div>
-            <div><Link to='/recipe'>go to recipe</Link></div>
-            <ButtonMui color={'secondary'} />
+            <div><Link to="/recipe/:recipeId">Add Recipe</Link></div>
+            <div><Link to="/recipeList">Recipes</Link></div>
+
         </main>
-  )
-}
+    );
+};
