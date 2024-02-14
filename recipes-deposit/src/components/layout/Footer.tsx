@@ -1,6 +1,5 @@
 import { Container, Typography, Box } from '@mui/material';
 
-// <Image priority src="/Logo.svg" width={75} height={30} alt="Logo" />
 export const Footer = (): JSX.Element => {
     return (
         <Box

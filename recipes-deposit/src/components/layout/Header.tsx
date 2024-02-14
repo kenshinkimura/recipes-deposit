@@ -4,23 +4,23 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Stack from '@mui/material/Stack/Stack';
 import { Link } from 'react-router-dom';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export const Header = (): JSX.Element => {
     return (
 
-        <AppBar position="absolute">
+        <AppBar >
             <Toolbar>
+
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
+                    aria-label="logo"
                 >
-                    <MenuIcon />
+                    <RestaurantIcon/>
                 </IconButton>
                 <Typography
                     variant="h6"
@@ -29,6 +29,7 @@ export const Header = (): JSX.Element => {
                 >
                       RECIPES DEPOSIT
                 </Typography>
+
                 <Stack
                     direction="row"
                     spacing={4}
@@ -38,6 +39,11 @@ export const Header = (): JSX.Element => {
                         to={'/'}
                         color="inherit"
                     >Home</Button>
+                    <Button
+                        component={Link}
+                        to={"/recipeList"}
+                        color="inherit"
+                    >Recipes</Button>
                     <Button
                         component={Link}
                         to={'/addrecipe'}
