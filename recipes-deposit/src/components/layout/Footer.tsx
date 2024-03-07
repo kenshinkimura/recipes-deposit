@@ -17,7 +17,7 @@ export const Footer = (): JSX.Element => {
                 maxWidth="lg"
                 color="secondary"
             >
-                <Typography color="secondary">hello</Typography>
+                <Typography color="secondary">&#169; {new Date().getFullYear()}</Typography>
             </Container>
         </Box>
     );

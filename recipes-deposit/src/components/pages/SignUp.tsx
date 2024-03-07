@@ -116,13 +116,13 @@ export const SignUpPage: React.FC = () => {
                                 xs={12}
                             >
                                 <TextField
-                                    required={true}
-                                    fullWidth={true}
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                />
+                                required={true}
+                                fullWidth={true}
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                            />
                             </Grid>
                             <Grid
                                 item={true}

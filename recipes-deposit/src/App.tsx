@@ -9,6 +9,8 @@ import { Recipe } from '@/components/pages/Recipe.tsx';
 import { SignUpPage } from '@/components/pages/SignUp.tsx';
 import { RecipeList } from '@/components/pages/RecipeList.tsx';
 
+
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -18,29 +20,16 @@ const router = createBrowserRouter([
             { path: '', element: <Home/> },
             { path: 'addrecipe', element: <AddRecipe/> },
             { path: 'recipe/:recipeId', element: <Recipe/> },
-
             { path: 'recipeList', element: <RecipeList/> },
             { path: 'signUp', element: <SignUpPage/> },
+
         ],
     },
 ]);
 
-// const routeDefinitions = createRoutesFromElements(
-//     <Route>
-//         <Route path= '/' element={<RootLayout/>} children={[
-//             <Route path='/' element={<Home/>}></Route>
-//             <Route path='/recipe' element={<AddRecipe/>}></Route>
-//         ]}/>
-//     </Route>
-// )
-
-// const router = createBrowserRouter(routeDefinitions)
-
 function App(): JSX.Element {
     return (
-        <><RouterProvider router={router} />
-
-        </>
+       <RouterProvider router={router} />
     );
 }
 
