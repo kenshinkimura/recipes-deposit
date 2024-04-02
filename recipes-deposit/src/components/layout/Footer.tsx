@@ -1,34 +1,38 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Typography, Box, Link } from '@mui/material';
 
 export const Footer = (): JSX.Element => {
     return (
         <Box
+            alignItems="center"
             sx={{
                 bgcolor: 'primary.main',
-                position: 'fixed',
-                left: 0,
-                bottom: 0,
+                // position: 'relative',
+                // left: 0,
+                // bottom: 0,
                 width: '100%',
-                height: '100px',
+                // height: '100px',
                 padding: '20px',
+                mt: 'auto',
             }}
         >
-            <Container
-                maxWidth="lg"
-                color="secondary"
+            <Typography
+                variant="body2"
+                color="text.secondary"
+                align="center"
+
             >
-                <Typography color="secondary">&#169; {new Date().getFullYear()}</Typography>
-            </Container>
+                {'Copyright © '}
+                <Link
+                    color="inherit"
+                    href="http://localhost/"
+                >
+                    Recipes Deposit
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+            </Typography>
         </Box>
+
     );
 };
 
-// position: fixed;
-// left: 0;
-// bottom: 0;
-// width: 100%;
-// height: 100px; /* Adjust this value as per your footer height */
-// background-color: #f5f5f5;
-// padding: 20px;
-// box-sizing: border-box;
-// j;

@@ -1,12 +1,12 @@
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 import AppBar from '@mui/material/AppBar';
 
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack/Stack';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export const Header = (): JSX.Element => {
     return (
@@ -41,7 +41,7 @@ export const Header = (): JSX.Element => {
                     >Home</Button>
                     <Button
                         component={Link}
-                        to={"/recipeList"}
+                        to={'/recipeList'}
                         color="inherit"
                     >Recipes</Button>
                     <Button

@@ -1,15 +1,12 @@
-import './App.css';
-import { Home } from '@/components/pages/Home.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
 import { AddRecipe } from '@/components/pages/AddRecipe.tsx';
-
-import { RootLayout } from '@/components/pages/Root.tsx';
 import { ErrorPage } from '@/components/pages/Error.tsx';
+import { Home } from '@/components/pages/Home.tsx';
 import { Recipe } from '@/components/pages/Recipe.tsx';
-import { SignUpPage } from '@/components/pages/SignUp.tsx';
 import { RecipeList } from '@/components/pages/RecipeList.tsx';
-
-
+import { RootLayout } from '@/components/pages/Root.tsx';
+import { SignUpPage } from '@/components/pages/SignUp.tsx';
 
 const router = createBrowserRouter([
     {
@@ -22,15 +19,16 @@ const router = createBrowserRouter([
             { path: 'recipe/:recipeId', element: <Recipe/> },
             { path: 'recipeList', element: <RecipeList/> },
             { path: 'signUp', element: <SignUpPage/> },
-
         ],
     },
 ]);
 
-function App(): JSX.Element {
+const App: React.FC = () => {
     return (
-       <RouterProvider router={router} />
+        <RouterProvider
+            router={router}
+        />
     );
-}
+};
 
 export default App;
