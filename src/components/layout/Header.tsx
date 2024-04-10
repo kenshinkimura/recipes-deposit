@@ -11,9 +11,11 @@ import { Link } from 'react-router-dom';
 export const Header = (): JSX.Element => {
     return (
 
-        <AppBar >
-            <Toolbar>
+        <AppBar
+            color="secondary"
 
+        >
+            <Toolbar>
                 <IconButton
                     size="large"
                     edge="start"
