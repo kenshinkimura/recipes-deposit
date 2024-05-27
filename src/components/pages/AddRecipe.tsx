@@ -2,27 +2,26 @@ import {
     Box, Button, Container,
     Grid, TextField,
 } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { generateRandomId } from '@/components/utils/utils.ts';
 
 interface FormData {
-    id: string;
-    input1: string;
-    input2: string;
+    id?: string;
+    recipeName: string;
+    description: string;
 }
 
 export const AddRecipe: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({ input1: '', input2: '', id: '' });
-    const handleInputRecipeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const value = event.target.value;
-        setFormData((prevFormData) => ({ ...prevFormData, input1: value }));
-    };
-    const handleInputDescription = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const value = event.target.value;
-        setFormData((prevFormData) => ({ ...prevFormData, input2: value }));
-    };
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>(); const [formData, setFormData] = useState<FormData>({ recipeName: '', description: '', id: '' });
+    const onSubmit: SubmitHandler<FormData> = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
+
         formData.id = generateRandomId();
         // console.log(formData);
 
@@ -38,31 +37,26 @@ export const AddRecipe: React.FC = () => {
                 localStorage.setItem('formData', JSON.stringify(parsedData));
             }
         }
-        setFormData({ input1: '', input2: '', id: '' });
+        setFormData({ recipeName: '', description: '', id: '' });
     };
-    // const generateRandomId = (): string => {
-    //     return Math.random().toString(36).substr(2, 9);
-    // };
-
     return (
 
         <Container
             component="main"
-            maxWidth="xs"
+            maxWidth="sm"
         >
-
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
+            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography
+                    component="h1"
+                    variant="h5"
+                    gutterBottom={true}
+                >
+                    Add Recipe
+                </Typography>
                 <Box
                     component="form"
                     noValidate={true}
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit(onSubmit)}
                     sx={{ mt: 3 }}
                 >
                     <Grid
@@ -72,56 +66,56 @@ export const AddRecipe: React.FC = () => {
                         <Grid
                             item={true}
                             xs={12}
-                            sm={12}
                         >
                             <TextField
                                 autoComplete="recipe-name"
-                                name="recipeName"
                                 required={true}
                                 fullWidth={true}
                                 id="recipeName"
-                                label="Název Receptu"
+                                label="Recipe Name"
                                 autoFocus={true}
-                                value={formData.input1}
-                                onChange={handleInputRecipeName}
+                                {...register('recipeName', {
+                                    required: true,
+                                    maxLength: 25,
+                                    pattern: /^[A-Za-z0-9]+$/i,
+                                })}
+                                error={errors?.recipeName?.type === 'pattern'}
+                                helperText={errors?.recipeName?.type === 'pattern' ? 'incorret entry, you can use only letters' : ''}
                             />
                         </Grid>
                         <Grid
                             item={true}
                             xs={12}
-                            sm={12}
                         >
                             <TextField
                                 required={true}
                                 id="description"
-                                label="Popis Receptu"
-                                name="description"
+                                label="Description"
                                 variant="outlined"
                                 fullWidth={true}
                                 multiline={true}
-                                minRows={3}
+                                rows={3}
                                 size="small"
-                                value={formData.input2}
-                                onChange={handleInputDescription}
+                                {...register('description', {
+                                    required: true,
+                                    maxLength: 500,
+                                    pattern: /^[A-Za-z0-9]+$/i,
+                                })}
+                                error={errors?.description?.type === 'pattern'}
+                                helperText={errors?.description?.type === 'pattern' ? 'incorret entry, you can use letters and numbers, max to 500size' : ''}
                             />
                         </Grid>
-
-                        <Grid
-                            item={true}
-                            xs={12}
-                            sm={12}
-                        >
-                            <Button
-                                type="submit"
-                                fullWidth={true}
-                                variant="contained"
-                                sx={{ mb: 2 }}
-                            >Uložit Recept</Button>
-                        </Grid>
                     </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth={true}
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Save Recipe
+                    </Button>
                 </Box>
             </Box>
         </Container>
-
     );
 };
