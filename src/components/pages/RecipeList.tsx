@@ -1,23 +1,19 @@
-import { Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
 import React, { useEffect, useState } from 'react';
-
-export const PRODUCTS = [
-    { id: 'p1', title: 'Guláš', img: 'gulas.jpg' },
-    { id: 'p2', title: 'Kuře na paprice', img: 'kureNaPap.jpg' },
-    { id: 'p1', title: 'Lasagne', img: 'lasagne.jpg' },
-];
+import { Link } from 'react-router-dom';
 
 interface Form {
     id: 'string';
-    input1: 'string';
-    input2: 'string';
+    recipeName: 'string';
+    description: 'string';
 }
 
 interface FormData {
     formData: Form[];
     id: string;
-    input1: string;
-    input2: string;
+    recipeName: 'string';
+    description: 'string';
 }
 
 export const imageUrl: string = 'src/photos/';
@@ -52,10 +48,14 @@ export const RecipeList: React.FC = () => {
                             item={true}
                             xs={12}
                         >
-                            <Typography
-                                variant="body1"
-                                align="center"
-                            >No data to be mapped</Typography>
+                            {/* <Typography*/}
+                            {/*    variant="body1"*/}
+                            {/*    align="center"*/}
+                            {/* >No data to be mapped</Typography>*/}
+                            <Button
+                                component={Link}
+                                to="/product-1"
+                            >product 1</Button>
                         </Grid>
                     ) : (
                         formData.map((form: FormData) => (
@@ -66,21 +66,28 @@ export const RecipeList: React.FC = () => {
                                 sm={6}
                                 md={3}
                             >
-                                <Card sx={{ height: '100%', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
-                                    <CardContent>
-                                        <Typography
-                                            variant="h6"
-                                            gutterBottom={true}
-                                        >Recept</Typography>
-                                        <Typography variant="body1">{form.input1}</Typography>
-                                        <Typography
-                                            variant="h6"
-                                            gutterBottom={true}
-                                            style={{ marginTop: '16px' }}
-                                        >Popis</Typography>
-                                        <Typography variant="body2">{form.input2}</Typography>
-                                    </CardContent>
-                                </Card>
+                                <Box
+                                    component={Link}
+                                    to={`${form.id}`}
+                                >
+                                    <Card
+                                        sx={{ height: '100%', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}
+                                    >
+                                        <CardContent>
+                                            <Typography
+                                                variant="h6"
+                                                gutterBottom={true}
+                                            >Recept</Typography>
+                                            <Typography variant="body1">{form.recipeName}</Typography>
+                                            <Typography
+                                                variant="h6"
+                                                gutterBottom={true}
+                                                style={{ marginTop: '16px' }}
+                                            >Popis</Typography>
+                                            <Typography variant="body2">{form.description}</Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Box>
                             </Grid>
                         ))
                     )}

@@ -3,9 +3,9 @@ import {
     Grid, TextField,
 } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { generateRandomId } from '@/components/utils/utils.ts';
+import { generateRandomId } from '@/utils/utils.ts';
 
 interface FormData {
     id?: string;
@@ -18,12 +18,12 @@ export const AddRecipe: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>(); const [formData, setFormData] = useState<FormData>({ recipeName: '', description: '', id: '' });
-    const onSubmit: SubmitHandler<FormData> = (event: React.FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
+    } = useForm<FormData>();
 
-        formData.id = generateRandomId();
-        // console.log(formData);
+    const onSubmit: SubmitHandler<FormData> = (event) => {
+        const formData = {
+            ...event, id: generateRandomId(),
+        };
 
         const dataString1: string | null = localStorage.getItem('formData');
         if (!dataString1) {
@@ -37,7 +37,7 @@ export const AddRecipe: React.FC = () => {
                 localStorage.setItem('formData', JSON.stringify(parsedData));
             }
         }
-        setFormData({ recipeName: '', description: '', id: '' });
+        // todo: reset();
     };
     return (
 
@@ -51,7 +51,7 @@ export const AddRecipe: React.FC = () => {
                     variant="h5"
                     gutterBottom={true}
                 >
-                    Add Recipe
+                    Add RecipeDetail
                 </Typography>
                 <Box
                     component="form"
@@ -72,12 +72,12 @@ export const AddRecipe: React.FC = () => {
                                 required={true}
                                 fullWidth={true}
                                 id="recipeName"
-                                label="Recipe Name"
+                                label="RecipeDetail Name"
                                 autoFocus={true}
                                 {...register('recipeName', {
                                     required: true,
                                     maxLength: 25,
-                                    pattern: /^[A-Za-z0-9]+$/i,
+                                    pattern: /^[a-zA-Z_ ]*$/i,
                                 })}
                                 error={errors?.recipeName?.type === 'pattern'}
                                 helperText={errors?.recipeName?.type === 'pattern' ? 'incorret entry, you can use only letters' : ''}
@@ -87,6 +87,7 @@ export const AddRecipe: React.FC = () => {
                             item={true}
                             xs={12}
                         >
+
                             <TextField
                                 required={true}
                                 id="description"
@@ -96,10 +97,11 @@ export const AddRecipe: React.FC = () => {
                                 multiline={true}
                                 rows={3}
                                 size="small"
+
                                 {...register('description', {
                                     required: true,
                                     maxLength: 500,
-                                    pattern: /^[A-Za-z0-9]+$/i,
+                                    pattern: /^\S.*(?:\r?\n\S.*)*$/u,
                                 })}
                                 error={errors?.description?.type === 'pattern'}
                                 helperText={errors?.description?.type === 'pattern' ? 'incorret entry, you can use letters and numbers, max to 500size' : ''}
@@ -112,7 +114,7 @@ export const AddRecipe: React.FC = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Save Recipe
+                        Save RecipeDetail
                     </Button>
                 </Box>
             </Box>
