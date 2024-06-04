@@ -37,7 +37,7 @@ export const AddRecipe: React.FC = () => {
                 localStorage.setItem('formData', JSON.stringify(parsedData));
             }
         }
-        // todo: reset();
+        // to do: reset();
     };
     return (
 
