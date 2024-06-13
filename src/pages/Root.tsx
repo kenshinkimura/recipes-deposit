@@ -1,9 +1,9 @@
 import { Container, ThemeProvider, createTheme, colors } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
-import { Footer } from '@/components/layout/Footer.tsx';
-import { Header } from '@/components/layout/Header.tsx';
-import classes from '@/components/pages/Root.module.css';
+import { Footer } from '@/layout/Footer.tsx';
+import { Header } from '@/layout/Header.tsx';
+import classes from '@/pages/Root.module.css';
 
 const theme = createTheme({
     status: {

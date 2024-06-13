@@ -5,13 +5,9 @@ import {
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Tiptap from '@/components/Tiptap';
+import { FormData } from '@/types/FormData.ts';
 import { generateRandomId } from '@/utils/utils.ts';
-
-interface FormData {
-    id?: string;
-    recipeName: string;
-    description: string;
-}
 
 export const AddRecipe: React.FC = () => {
     const {
@@ -72,7 +68,7 @@ export const AddRecipe: React.FC = () => {
                                 required={true}
                                 fullWidth={true}
                                 id="recipeName"
-                                label="RecipeDetail Name"
+                                label="Recipe Name"
                                 autoFocus={true}
                                 {...register('recipeName', {
                                     required: true,
@@ -107,6 +103,12 @@ export const AddRecipe: React.FC = () => {
                                 helperText={errors?.description?.type === 'pattern' ? 'incorret entry, you can use letters and numbers, max to 500size' : ''}
                             />
                         </Grid>
+                        <Grid
+                            item={true}
+                            xs={12}
+                        >
+                            <Tiptap />
+                        </Grid>
                     </Grid>
                     <Button
                         type="submit"
@@ -121,3 +123,4 @@ export const AddRecipe: React.FC = () => {
         </Container>
     );
 };
+

@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import { AddRecipe } from '@/components/pages/AddRecipe.tsx';
-import { ErrorPage } from '@/components/pages/Error.tsx';
-import { Home } from '@/components/pages/Home.tsx';
-import { RecipeDetail } from '@/components/pages/RecipeDetail.tsx';
-import { RecipeList } from '@/components/pages/RecipeList.tsx';
-import { RootLayout } from '@/components/pages/Root.tsx';
-import { SignUpPage } from '@/components/pages/SignUp.tsx';
+import { AddRecipe } from '@/pages/AddRecipe.tsx';
+import { ErrorPage } from '@/pages/Error.tsx';
+import { Home } from '@/pages/Home.tsx';
+import { RecipeDetail } from '@/pages/RecipeDetail.tsx';
+import { RecipeList } from '@/pages/RecipeList.tsx';
+import { RootLayout } from '@/pages/Root.tsx';
+import { SignUpPage } from '@/pages/SignUp.tsx';
 
 const router = createBrowserRouter([
     {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         children: [
             { path: '', element: <Home/> },
             { path: 'addrecipe', element: <AddRecipe/> },
-            { path: 'recipeList/:recipeId', element: <RecipeDetail/> },
+            { path: 'recipeList/:id', element: <RecipeDetail/> },
             { path: 'recipeList', element: <RecipeList/> },
             { path: 'signUp', element: <SignUpPage/> },
         ],

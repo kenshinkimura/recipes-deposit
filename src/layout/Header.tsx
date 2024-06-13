@@ -5,32 +5,27 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack/Stack';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
 export const Header = (): JSX.Element => {
     return (
 
         <AppBar
+            sx={{ pl: 50, pr: 50 }}
             color="secondary"
 
         >
-            <Toolbar>
+            <Toolbar >
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="logo"
+                    component={Link}
+                    to={'/'}
                 >
-                    <RestaurantIcon/>
+                    <RestaurantIcon />
                 </IconButton>
-                <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ flexGrow: 1 }}
-                >
-                      RECIPES DEPOSIT
-                </Typography>
 
                 <Stack
                     direction="row"
