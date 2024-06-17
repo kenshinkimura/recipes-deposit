@@ -1,5 +1,5 @@
 // src/Tiptap.jsx
-import { EditorProvider, FloatingMenu, BubbleMenu } from '@tiptap/react';
+import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 // define your extension array
@@ -10,14 +10,16 @@ const extensions = [
 const content = '<p>Hello World!</p>';
 
 const Tiptap = () => {
+    const editor = useEditor({
+        extensions,
+        content,
+    });
     return (
-        <EditorProvider
-            extensions={extensions}
-            content={content}
-        >
-            <FloatingMenu>This is the floating menu</FloatingMenu>
-            <BubbleMenu>This is the bubble menu</BubbleMenu>
-        </EditorProvider>
+        <>
+            <EditorContent editor={editor} />
+            <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
+            <BubbleMenu editor={editor}>This is the bubble menu</BubbleMenu>
+        </>
     );
 };
 

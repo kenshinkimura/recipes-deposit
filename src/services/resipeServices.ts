@@ -12,7 +12,7 @@ export const getRecipeList = async() => {
                 }, 20);
             } catch (e) {
                 // console.error('Error parsing data:', e);
-                reject(e);
+                reject('Error parsing data:');
             }
         } else {
             reject('No data found in localStorage');

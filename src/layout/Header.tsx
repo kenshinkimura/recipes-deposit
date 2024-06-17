@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
+import { ADD_C, HOME_C, RECIPE_C, RECIPIES_C, SIGN_UP_C } from '@/constants';
 
 export const Header = (): JSX.Element => {
     return (
@@ -35,22 +36,22 @@ export const Header = (): JSX.Element => {
                         component={Link}
                         to={'/'}
                         color="inherit"
-                    >Home</Button>
+                    >{HOME_C}</Button>
                     <Button
                         component={Link}
                         to={'/recipeList'}
                         color="inherit"
-                    >Recipes</Button>
+                    >{RECIPIES_C}</Button>
                     <Button
                         component={Link}
                         to={'/addrecipe'}
                         color="inherit"
-                    >Add Recipe</Button>
+                    >{ADD_C} {RECIPE_C}</Button>
                     <Button
                         component={Link}
                         to={'/signUp'}
                         color="inherit"
-                    >Sign Up</Button>
+                    >{SIGN_UP_C}</Button>
 
                 </Stack>
             </Toolbar>

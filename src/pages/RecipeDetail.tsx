@@ -1,7 +1,16 @@
-import { Card, CardContent, Container, Typography, CircularProgress } from '@mui/material';
-import Box from '@mui/material/Box';
+import {
+    Card,
+    CardContent,
+    Container,
+    Typography,
+    CircularProgress,
+    Button, Box,
+} from '@mui/material';
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ConfirmationDialog } from '@/components/ConfirmationDialog.tsx';
+import { BACK_TO_HOME_C, DELETE_RECIPE_C, EDIT_RECIPE_C, NO_RECIPE_FOUND } from '@/constants';
 import { getRecipeDetail } from '@/services/resipeServices.ts';
 import { FormData } from '@/types/FormData.ts';
 
@@ -10,6 +19,8 @@ export const RecipeDetail: React.FC = () => {
     const [recipe, setRecipe] = useState<FormData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [openDialog, setOpenDialog] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
@@ -27,6 +38,24 @@ export const RecipeDetail: React.FC = () => {
             setLoading(false);
         }
     }, [id]);
+
+    const handleDelete = () => {
+        setOpenDialog(true);
+    };
+    const confirmDelete = () => {
+        const dataString = localStorage.getItem('formData');
+        if (dataString) {
+            const parsedData: FormData[] = JSON.parse(dataString);
+            const updatedData = parsedData.filter(item => item.id !== id);
+            localStorage.setItem('formData', JSON.stringify(updatedData));
+            navigate('/recipeList');
+        }
+        setOpenDialog(false);
+    };
+
+    const cancelDelete = () => {
+        setOpenDialog(false);
+    };
 
     if (loading) {
         return <CircularProgress />;
@@ -49,7 +78,7 @@ export const RecipeDetail: React.FC = () => {
                     <Typography
                         variant="body1"
                         color="primary"
-                    >Back to Home</Typography>
+                    >{BACK_TO_HOME_C}</Typography>
                 </Box>
             </Container>
         );
@@ -63,7 +92,7 @@ export const RecipeDetail: React.FC = () => {
                     color="textSecondary"
                     gutterBottom={true}
                 >
-                    No recipe found.
+                    {NO_RECIPE_FOUND}
                 </Typography>
                 <Box
                     component={Link}
@@ -72,7 +101,7 @@ export const RecipeDetail: React.FC = () => {
                     <Typography
                         variant="body1"
                         color="primary"
-                    >Back to Home</Typography>
+                    >{BACK_TO_HOME_C}</Typography>
                 </Box>
             </Container>
         );
@@ -100,6 +129,25 @@ export const RecipeDetail: React.FC = () => {
                     {/* Add more detailed information about the recipe here */}
                 </CardContent>
             </Card>
+            <Box
+                mt={2}
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+            >
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate(`/edit/${id}`)}
+                >
+                    {EDIT_RECIPE_C}
+                </Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleDelete}
+                >
+                    {DELETE_RECIPE_C}
+                </Button>
+            </Box>
             <Box mt={2}>
                 <Box
                     component={Link}
@@ -108,9 +156,17 @@ export const RecipeDetail: React.FC = () => {
                     <Typography
                         variant="body1"
                         color="primary"
-                    >Back to Home</Typography>
+                    >{BACK_TO_HOME_C}</Typography>
                 </Box>
             </Box>
+            {/* Confirmation Dialog */}
+            <ConfirmationDialog
+                open={openDialog}
+                title="Confirm Deletion"
+                description="Are you sure you want to delete this recipe? This action cannot be undone."
+                onConfirm={confirmDelete}
+                onCancel={cancelDelete}
+            />
         </Container>
     );
 };

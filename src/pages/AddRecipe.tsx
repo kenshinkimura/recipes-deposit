@@ -5,7 +5,9 @@ import {
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Tiptap from '@/components/Tiptap';
+import { ADD_C, DESCRIPTION_C, RECIPE_C, RECIPE_NAME_C, SAVE_C } from '@/constants';
 import { FormData } from '@/types/FormData.ts';
 import { generateRandomId } from '@/utils/utils.ts';
 
@@ -16,6 +18,7 @@ export const AddRecipe: React.FC = () => {
         formState: { errors },
     } = useForm<FormData>();
 
+    const navigate = useNavigate();
     const onSubmit: SubmitHandler<FormData> = (event) => {
         const formData = {
             ...event, id: generateRandomId(),
@@ -33,7 +36,8 @@ export const AddRecipe: React.FC = () => {
                 localStorage.setItem('formData', JSON.stringify(parsedData));
             }
         }
-        // to do: reset();
+
+        navigate(`/recipeList/${formData.id}`);
     };
     return (
 
@@ -41,13 +45,13 @@ export const AddRecipe: React.FC = () => {
             component="main"
             maxWidth="sm"
         >
-            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Box sx={{ marginTop: 14, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography
                     component="h1"
                     variant="h5"
                     gutterBottom={true}
                 >
-                    Add RecipeDetail
+                    {ADD_C} {RECIPE_C}
                 </Typography>
                 <Box
                     component="form"
@@ -68,7 +72,7 @@ export const AddRecipe: React.FC = () => {
                                 required={true}
                                 fullWidth={true}
                                 id="recipeName"
-                                label="Recipe Name"
+                                label={RECIPE_NAME_C}
                                 autoFocus={true}
                                 {...register('recipeName', {
                                     required: true,
@@ -83,11 +87,11 @@ export const AddRecipe: React.FC = () => {
                             item={true}
                             xs={12}
                         >
-
                             <TextField
+
                                 required={true}
                                 id="description"
-                                label="Description"
+                                label={DESCRIPTION_C}
                                 variant="outlined"
                                 fullWidth={true}
                                 multiline={true}
@@ -116,7 +120,7 @@ export const AddRecipe: React.FC = () => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                     >
-                        Save RecipeDetail
+                        {SAVE_C}
                     </Button>
                 </Box>
             </Box>

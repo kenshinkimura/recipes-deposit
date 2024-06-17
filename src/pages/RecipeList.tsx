@@ -2,6 +2,7 @@ import { Button, Card, CardContent, Container, Grid, Typography } from '@mui/mat
 import Box from '@mui/material/Box';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { POPIS_C, RECEPT_C } from '@/constants';
 import { getRecipeList } from '@/services/resipeServices.ts';
 import { FormData } from '@/types/FormData.ts';
 
@@ -60,7 +61,7 @@ export const RecipeList: React.FC = () => {
                                             variant="h6"
                                             gutterBottom={true}
                                         >
-                                            Recept
+                                            {RECEPT_C}
                                         </Typography>
                                         <Typography variant="body1">
                                             {form.recipeName}
@@ -70,7 +71,7 @@ export const RecipeList: React.FC = () => {
                                             gutterBottom={true}
                                             css={{ marginTop: '16px' }}
                                         >
-                                            Popis
+                                            {POPIS_C}
                                         </Typography>
                                         <Typography variant="body2">{form.description}</Typography>
                                     </CardContent>

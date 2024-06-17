@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import { AddRecipe } from '@/pages/AddRecipe.tsx';
+import { EditRecipe } from '@/pages/EditRecipe.tsx';
 import { ErrorPage } from '@/pages/Error.tsx';
 import { Home } from '@/pages/Home.tsx';
 import { RecipeDetail } from '@/pages/RecipeDetail.tsx';
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
             { path: 'addrecipe', element: <AddRecipe/> },
             { path: 'recipeList/:id', element: <RecipeDetail/> },
             { path: 'recipeList', element: <RecipeList/> },
+            { path: 'edit/:id', element: <EditRecipe /> },
             { path: 'signUp', element: <SignUpPage/> },
         ],
     },
